@@ -1,1 +1,20 @@
-This file was created by IntelliJ IDEA 10.5.2 for binding GitHub repository
+----------
+-Airedale-
+----------
+
+DESCRIPTION:
+    An INNOVATIVE (not really) and CAPTIVATING (hopefully) RPG created by ZENX2.
+
+THE DREAM:
+    Create an RPG, based on a NEW-FANGLED FANTASY LAND called AIREDALE. There are
+    many things to do in Airedale, from killing monsters to making magical armor
+    with no real uniquity or special properties, to starting a fist fight with
+    your friends in the middle of town.
+
+FEATURES:
+    Free movement (not a grid)
+    Online multiplayer, server based
+    Enemies that do pathfinding and whatnot
+    Many items that can be used from inside your inventory (health potions etc.)
+        and outside as weapons (swords, knives, maces, axes, etc.)
+    
