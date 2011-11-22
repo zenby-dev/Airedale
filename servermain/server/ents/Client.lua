@@ -21,6 +21,16 @@ function GetClient(ci)
 
 end
 
+function RemoveClient(ci)
+
+	if CLIENTS[ci] then
+
+		Client:Remove()
+
+	end
+
+end
+
 class.Client()
 
 function Client:__init(ci)
@@ -46,7 +56,9 @@ end
 
 function Client:Remove()
 
-	CLIENTS[self.ci] = nil
+	if CLIENTS[self.ci] then
+		CLIENTS[self.ci] = nil
+	end
 	self = nil
 
 end
@@ -63,6 +75,9 @@ function(data, ci)
 	if CLIENTS[ci] then
 
 		CLIENTS[ci].name = data[1]
+		local c = GetClient(ci)
+		print(c.name.." ("..ci..")".." has connected.")
+		send("print", {c.name.." ("..ci..")".." has connected."})
 
 	end
 

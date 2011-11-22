@@ -39,15 +39,13 @@ function GameHooks.Init()
 
 		AddClient(Client(clientid))
 
-		local c = GetClient(clientid)
-		print(c.name.." ("..clientid..")".." has connected.")
-		send("print", {c.name.." ("..clientid..")".." has connected."})
-
 	end
 	function SERVER.callbacks.disconnect(clientid)
 
-		print(clientid.." has disconnected.")
-		send("print", {clientid.." has disconnected."})
+		local c = GetClient(clientid)
+		print(c.name.." ("..clientid..")".." has disconnected.")
+		send("print", {c.name.." ("..clientid..")".." has disconnected."})
+		RemoveClient(clientid)
 
 	end
 	SERVER:setPing(true, 30, "AIREDALEPING") --30 seconds of leniency.
