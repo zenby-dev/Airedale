@@ -8,7 +8,8 @@
 newhandler("chat",
 function(data, clientid)
 
-	print(tostring(clientid)..": "..tostring(data[1]))
-	send("print", {tostring(clientid)..": "..tostring(data[1])})
+	local c = CLIENTS[clientid]
+	print(c.name.." ("..tostring(clientid).."): "..tostring(data[1]))
+	send("print", {c.name..": "..tostring(data[1])})
 
 end)

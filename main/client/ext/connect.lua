@@ -10,6 +10,8 @@ function connect(ipaport)
 	if CONNECTED then
 
 		disconnect()
+		CONNECTED = false
+		CONNECTION = nil
 
 	end
 
@@ -17,6 +19,8 @@ function connect(ipaport)
 	if ip[1] == "localhost" then ip[1] = "127.0.0.1" end
 	local s, e = pcall(function() CLIENT:connect(ip[1], ip[2], false) CONNECTED = true CONNECTION = ipaport end)
 	if not s then error(e) end
+
+	send("userinfo", {CONFIG.Username})
 
 end
 

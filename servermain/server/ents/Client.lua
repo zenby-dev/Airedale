@@ -11,6 +11,16 @@ function AddClient(c)
 
 end
 
+function GetClient(ci)
+
+	if CLIENTS[ci] then
+
+		return CLIENTS[ci]
+
+	end
+
+end
+
 class.Client()
 
 function Client:__init(ci)
@@ -27,7 +37,7 @@ function Client:Kick(reason)
 
 end
 
-function Client:Ban(reason, length)
+function Client:Ban(reason, length) --TODO: implement bans (just block packets?)
 
 	BANLIST[self.ci] = {reason, length, os.clock()} --start time
 	self:Kick(reason)
@@ -40,3 +50,20 @@ function Client:Remove()
 	self = nil
 
 end
+
+function Client:GetIp()
+
+	return self.ci:split(":")[1] --Just walk away.
+
+end
+
+newhandler("userinfo",
+function(data, ci)
+
+	if CLIENTS[ci] then
+
+		CLIENTS[ci].name = data[1]
+
+	end
+
+end)

@@ -5,6 +5,7 @@
 -- Time: 4:51 PM
 --
 
+return
 {
 	PORT = 413,
 	maxplayers = 10

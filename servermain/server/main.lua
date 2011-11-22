@@ -39,8 +39,9 @@ function GameHooks.Init()
 
 		AddClient(Client(clientid))
 
-		print(clientid.." has connected.")
-		send("print", {clientid.." has connected."})
+		local c = GetClient(clientid)
+		print(c.name.." ("..clientid..")".." has connected.")
+		send("print", {c.name.." ("..clientid..")".." has connected."})
 
 	end
 	function SERVER.callbacks.disconnect(clientid)

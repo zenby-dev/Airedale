@@ -7,7 +7,7 @@
 
 function loadtable(text)
 
-	local ret = loadstring("return "..text)()
+	local ret = loadstring(text)()
 	--print("LOADED TABLE: "..ret)
 	return ret
 
