@@ -1,0 +1,14 @@
+<sprite file="game/sprites/player.png" pos="1,1">
+	<anim name="" speed="1">
+		<img origin="16,16" ss="32,32" anim="0,0"></img>
+	</anim>
+	<anim name="aimingsmall" speed="1">
+		<img origin="16,16" ss="32,32" anim="32,0"></img>
+	</anim>
+	<anim name="aiminglarge" speed="1">
+		<img origin="16,16" ss="32,32" anim="64,0" wep="3,-3"></img>
+	</anim>
+	<anim name="dead" speed="1">
+		<img origin="16,16" ss="32,32" anim="96,0"></img>
+	</anim>
+</sprite>

@@ -1,0 +1,1 @@
+function RunString(s)	local fs = love.filesystem	if fs.exists("temp.txt") then fs.remove("temp.txt") end	fs.write("temp.txt", s)	local c = fs.load("temp.txt")	fs.remove("temp.txt")	return cend
