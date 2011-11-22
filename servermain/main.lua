@@ -68,13 +68,13 @@ function love.run()
 		if love.event then
 			for e,a,b,c in love.event.poll() do
 				if e == "q" then
+					disconnect("Shutting down.")
 					if not love.quit or not love.quit() then
 						if love.audio then
 							love.audio.stop()
 						end
 						return
 					end
-					disconnect("Shutting down.")
 				elseif e == "kp" then
 					if love.keypressed then
 						-- if exists, call love.draw. on error, remove function

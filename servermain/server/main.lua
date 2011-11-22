@@ -19,6 +19,7 @@ function GameHooks.Init()
 
 	CONFIG = loadtable(love.filesystem.read("config/config.lua"))
 
+	CLIENTS = {}
 	SERVER = lube.udpServer()
 	SERVER.handshake = "AIREDALEHANDSHAKE"
 	function SERVER.callbacks.recv(data, clientid)
@@ -36,6 +37,8 @@ function GameHooks.Init()
 
 		end
 
+		AddClient(Client(clientid))
+
 		print(clientid.." has connected.")
 		send("print", {clientid.." has connected."})
 
@@ -49,7 +52,7 @@ function GameHooks.Init()
 	SERVER:setPing(true, 30, "AIREDALEPING") --30 seconds of leniency.
 	SERVER:listen(CONFIG.PORT)
 
-	include("server/game/main")
+	include("server/game/main.lua")
 
 	print("Airedale Server, now running on port "..CONFIG.PORT)
 	print("Use |INSERT GAME SELECTION FUNCTION WHEN DONE| to select the game for the server to run.")

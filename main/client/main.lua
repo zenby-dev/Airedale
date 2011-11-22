@@ -25,7 +25,7 @@ function GameHooks.Init()
 
 	end
 
-	include("client/game/main")
+	include("client/game/main.lua")
 
 end
 

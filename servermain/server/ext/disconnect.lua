@@ -7,7 +7,7 @@
 
 function disconnect(reason, ci)
 
-	send("disconnect", reason, ci)
+	send("disconnect", {reason}, ci)
 	if ci then
 		if SERVER.callbacks.disconnect then
 			SERVER.callbacks.disconnect(ci)
@@ -19,7 +19,7 @@ function disconnect(reason, ci)
 				SERVER.callbacks.disconnect(k)
 			end
 		end
-		SERVER.clients = nil
+		SERVER.clients = {}
 	end
 
 end
