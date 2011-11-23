@@ -11,9 +11,9 @@ KEYS = loadtable(love.filesystem.read("config/keys.lua"))
 hook.Add("Update", "SendInput.up", --TODO: Look into just iterating through the KeyConstant thing
 function(dt)
 
-	for k, v in pairs(CLIENTKEYINPUT) do --delete key not held down any more
+	for k, v in pairs(KEYS) do --find held keys
 
-		if not love.keyboard.isDown(v) then table.remove(CLIENTKEYINPUT, k) end
+		if love.keyboard.isDown(v) then table.insert(CLIENTKEYINPUT, string.lower(v)) end
 
 	end
 	send("userinput", CLIENTKEYINPUT)
@@ -21,9 +21,9 @@ function(dt)
 
 end)
 
-hook.Add("KeyPressed", "SendInput.pr",
+--[[hook.Add("KeyPressed", "SendInput.pr",
 function(key)
 
 	table.insert(CLIENTKEYINPUT, string.lower(key))
 
-end)
+end)]]

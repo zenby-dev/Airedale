@@ -13,7 +13,6 @@ function()
 	for k, v in pairs(CLIENTS) do
 
 		local keys = table.concat(v.input, " ")
-		love.graphics.print(keys, 20, 20)
 		if #v.input > 0 then print(keys) end
 
 	end
