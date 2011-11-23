@@ -1,4 +1,4 @@
-keybinds = {} --ngngng nothing to see here
+--[[keybinds = {} --ngngng nothing to see here
 
 local function KeyBind(k, f) keybinds[k] = f end
 
@@ -39,4 +39,4 @@ function love.keypressed(key)
 	
 	end
 	
-end
+end]]

@@ -5,6 +5,8 @@
 -- Time: 8:41 PM
 --
 
+--GLOBAL CONTROL FUNCTIONS
+
 function AddClient(c)
 
 	CLIENTS[c.ci] = c
@@ -31,12 +33,21 @@ function RemoveClient(ci)
 
 end
 
+--CLASS DEFINITION
+
 class.Client()
 
 function Client:__init(ci)
 
 	self.ci = ci --clientid, basically (%d.%d.%d.%d:%d, ip:port)
 	self.name = ""
+	self.input = {}
+
+end
+
+function Client:KeyIsDown(key)
+
+	return table.HasValue(self.input, key)
 
 end
 
@@ -54,6 +65,12 @@ function Client:Ban(reason, length) --TODO: implement bans (just block packets?)
 
 end
 
+function Client:GetIp()
+
+	return self.ci:split(":")[1] --Just walk away.
+
+end
+
 function Client:Remove()
 
 	if CLIENTS[self.ci] then
@@ -63,11 +80,7 @@ function Client:Remove()
 
 end
 
-function Client:GetIp()
-
-	return self.ci:split(":")[1] --Just walk away.
-
-end
+--HANDLERS
 
 newhandler("userinfo",
 function(data, ci)
@@ -78,6 +91,17 @@ function(data, ci)
 		local c = GetClient(ci)
 		print(c.name.." ("..ci..")".." has connected.")
 		send("print", {c.name.." ("..ci..")".." has connected."})
+
+	end
+
+end)
+
+newhandler("userinput",
+function(data, ci)
+
+	if CLIENTS[ci] then
+
+		CLIENTS[ci].input = data
 
 	end
 

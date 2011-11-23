@@ -9,3 +9,4 @@
 --TODO: Client object for server
 --TODO: Input struct for CLIENT -> SERVER
 --TODO: MOVEY THINGYS SERVER -> CLIENT; draw stuff
+--TODO: CLIENT DRAWY STUFF AND ALL THAT

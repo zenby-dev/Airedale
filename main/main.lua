@@ -210,3 +210,15 @@ function love.focus(f)
 	hook.Call("Focus", f)
 
 end
+
+function love.keypressed(key)
+
+	hook.Call("KeyPressed", key)
+
+end
+
+function love.keyreleased(key)
+
+	hook.Call("KeyReleased", key)
+
+end
