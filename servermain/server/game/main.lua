@@ -9,13 +9,12 @@
 hook.Add("Draw", "drawinput",
 function()
 
-	love.graphics.setColor(255, 255, 255, 255)
-	for k, v in pairs(CLIENTS) do
-
-		local keys = table.concat(v.input, " ")
-		if #v.input > 0 then print(keys) end
-
-	end
+	
 
 end)
 
+function NewCircle(pos)
+
+	send("entsync", {"create", pos, "function(self) love.graphics.setColor(255,255,255,255) love.graphics.circle('fill', self.pos.x, self.pos.y, 10) end", 1})
+
+end

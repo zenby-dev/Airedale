@@ -8,7 +8,7 @@
 
 function send(tag, data)
 
-	local d = table.concat(data, "\2") --separate all data
+	local d = tabletostring(data) --separate all data
 	CLIENT:send(tag.."\1"..d)
 
 end

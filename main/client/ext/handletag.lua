@@ -22,7 +22,7 @@ end
 function handletag(inp)
 
 	local t = inp:split("\1") --separate tag
-	local tag, data = t[1], t[2]:split("\2") --separate data into table
+	local tag, data = t[1], loadtable(t[2]) --separate data into table
 	if HANDLERS[tag] then
 
 		HANDLERS[tag](data)

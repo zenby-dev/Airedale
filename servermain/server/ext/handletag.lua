@@ -25,7 +25,7 @@ function handletag(inp, clientid)
 	local tag = t[1]
 	local data
 	if t[2] then
-		data = t[2]:split("\2")
+		data = loadtable(t[2])
 	end
 	if HANDLERS[tag] then
 

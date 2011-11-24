@@ -15,7 +15,7 @@ end
 
 function tabletostring(t)
 
-	local tab = ""
+	local tab = "return\n"
 
 	local function recurse(t, n)
 
