@@ -1,6 +1,6 @@
 love.filesystem.setIdentity("AiredaleServer")
 requiredir("/server/ext")
-requiredir("/server/ents")
+include("server/ents/load.lua")
 requiredir("/server/handlers")
 
 function GameHooks.Init()
@@ -38,6 +38,7 @@ function GameHooks.Init()
 		end
 
 		AddClient(Client(clientid))
+		hook.Call("ClientConnect", clientid)
 
 	end
 	function SERVER.callbacks.disconnect(clientid)
@@ -46,6 +47,8 @@ function GameHooks.Init()
 		print(c.name.." ("..clientid..")".." has disconnected.")
 		send("print", {c.name.." ("..clientid..")".." has disconnected."})
 		RemoveClient(clientid)
+
+		hook.Call("ClientDisconnect", clientid)
 
 	end
 	SERVER:setPing(true, 30, "AIREDALEPING") --30 seconds of leniency.

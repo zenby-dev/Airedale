@@ -7,10 +7,7 @@
 
 class.NetBase(Ent)
 
-function NetBase:__init(pos, df, indx)
-
-	self.pos = pos
-	self.df = df
+function NetBase:__init(indx)
 
 	if indx then
 		self.__entindex = indx
@@ -21,7 +18,7 @@ end
 
 function NetBase:Draw()
 
-	local s, e = pcall(function() loadstring("return "..self.df)()(self) end)
+	local s, e = pcall(function() loadstring(self.df)()(self) end)
 	if not s then error(e) end
 
 end
@@ -35,12 +32,31 @@ end
 newhandler("entsync",
 function(data)
 
-	if data[1] == "create" then
+	--if not data then return end
+	if not ents[data[2].__entindex] then --initialize if it's not here
 
-		local indx
-		if data[4] then indx = data[4] end
-		NetBase(data[2], data[3], indx)
+		NetBase(data[2].__entindex)
+		for k, v in pairs(data[2]) do
+
+			ents[data[2].__entindex][k] = v
+
+		end
+
+	else
+
+		for k, v in pairs(data[2]) do
+
+			ents[data[2].__entindex][k] = v
+
+		end
 
 	end
+
+end)
+
+newhandler("entremove",
+function(data)
+
+	ents[data[1]]:Remove()
 
 end)

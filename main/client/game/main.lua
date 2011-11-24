@@ -8,8 +8,10 @@
 
 --TODO: Client object for server --DONE--
 --TODO: Input struct for CLIENT -> SERVER --DONE--
---TODO: MOVEY THINGYS SERVER -> CLIENT; draw stuff
---TODO: CLIENT DRAWY STUFF AND ALL THAT
+--TODO: MOVEY THINGYS SERVER -> CLIENT; draw stuff --DONE--
+--TODO: CLIENT DRAWY STUFF AND ALL THAT --DONE--
+
+function LHC() connect("localhost:413") end
 
 hook.Add("Draw", "DrawEnts",
 function()

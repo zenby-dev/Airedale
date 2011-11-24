@@ -6,15 +6,38 @@
 --
 --SERVER
 
-hook.Add("Draw", "drawinput",
-function()
+hook.Add("Update", "UpdateEnts",
+function(dt)
 
-	
+	--Update Entities
+	for k, v in pairs(ents) do
+
+		v:Update(dt)
+
+		local tab = {}
+		for key, value in pairs(v) do
+			tab[key] = value
+		end
+		send("entsync", {dt, tab})
+
+	end
 
 end)
 
-function NewCircle(pos)
+hook.Add("ClientConnect", "wrawr",
+function(ci)
 
-	send("entsync", {"create", pos, "function(self) love.graphics.setColor(255,255,255,255) love.graphics.circle('fill', self.pos.x, self.pos.y, 10) end", 1})
+	PlayerCircle(ci)
 
-end
+end)
+
+hook.Add("ClientDisconnect", "wrawr",
+function(ci)
+
+	for k, v in pairs(ents) do
+
+		v:Disconnect(ci)
+
+	end
+
+end)

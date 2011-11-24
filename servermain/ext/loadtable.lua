@@ -7,9 +7,16 @@
 
 function loadtable(text)
 
-	local ret = loadstring(text)()
-	--print("LOADED TABLE: "..ret)
-	return ret
+	if not text then return end
+	local s, e = pcall(loadstring(text))
+	if not s then
+		--print(text)
+		--love.filesystem.write("OH POO.txt", text)
+		print("Error: "..e)
+		return
+	end
+	--love.filesystem.write("OH POO.txt", text)
+	return e
 
 end
 
@@ -53,11 +60,18 @@ function tabletostring(t)
 
 			elseif vt == "string" then
 
+				local v = string.gsub(v, string.char(10), "\\n")
+				v = string.gsub(v, string.char(13), "")
+				v = string.gsub(v, "\"", "\\\"")
 				tab = tab.."\""..v.."\""
 
-			elseif vt == "number" or vt == "bool" then
+			elseif vt == "number" then
 
-				tab = tab..v
+				tab = tab..tostring(v)
+
+			elseif vt == "boolean" then
+
+				tab = tab..(v and "true" or "false")
 
 			end
 

@@ -13,7 +13,7 @@ function(dt)
 
 	for k, v in pairs(KEYS) do --find held keys
 
-		if love.keyboard.isDown(v) then table.insert(CLIENTKEYINPUT, string.lower(v)) end
+		if love.keyboard.isDown(v) then CLIENTKEYINPUT[string.lower(v)] = true end
 
 	end
 	send("userinput", CLIENTKEYINPUT)

@@ -47,7 +47,8 @@ end
 
 function Client:KeyIsDown(key)
 
-	return table.HasValue(self.input, key)
+	--print("CHECKING FOR "..key..", RESULT: "..(self.input[key] and "YAY" or "NO YAY"))
+	return self.input[key]
 
 end
 
