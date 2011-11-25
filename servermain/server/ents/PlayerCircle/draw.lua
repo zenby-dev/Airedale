@@ -12,6 +12,6 @@ function(self)
 	g.setColor(self.col[1], self.col[2], self.col[3], self.col[4])
 	g.circle("fill", self.pos.x, self.pos.y, 30)
 	g.setColor(255, 255, 255, 255)
-	g.print((self.ci.name or "No Name"), self.pos.x - 15, self.pos.y - 20)
+	g.print((GetPeer(self.ci).name or "No Name"), self.pos.x - 30, self.pos.y - 45)
 
 end

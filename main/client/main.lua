@@ -27,6 +27,8 @@ function GameHooks.Init()
 
 	end
 
+	PEERS = {}
+
 	include("client/game/main.lua")
 
 end

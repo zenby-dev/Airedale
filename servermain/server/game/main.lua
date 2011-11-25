@@ -2,12 +2,21 @@
 -- Created by IntelliJ IDEA.
 -- User: ZenX2
 -- Date: 11/21/11
--- Time: 6:14 PM
+-- Time: 6:12 PM
 --
 --SERVER
 
 hook.Add("Update", "UpdateEnts",
 function(dt)
+
+	local clientinfo = {}
+	for k, v in pairs(CLIENTS) do --I'll expand this later
+
+		clientinfo[k] = {}
+		clientinfo[k].name = v.name
+
+	end
+	send("updateclientinfo", clientinfo)
 
 	--Update Entities
 	for k, v in pairs(ents) do
