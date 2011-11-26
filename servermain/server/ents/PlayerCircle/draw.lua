@@ -9,8 +9,7 @@ return
 function(self)
 
 	local g = love.graphics
-	g.setColor(self.col[1], self.col[2], self.col[3], self.col[4])
-	g.circle("fill", self.pos.x, self.pos.y, 30)
+	self.img:Draw()
 	g.setColor(255, 255, 255, 255)
 	g.print((GetPeer(self.ci).name or "No Name"), self.pos.x - 30, self.pos.y - 45)
 

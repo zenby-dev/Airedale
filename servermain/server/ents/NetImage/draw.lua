@@ -9,5 +9,6 @@ return
 function(self)
 
 	local g = love.graphics
+	self.img:Draw()
 
 end

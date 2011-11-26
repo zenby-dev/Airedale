@@ -25,7 +25,21 @@ end
 
 function NetBase:Update(dt)
 
-	
+	if self.ext and not self.img then
+
+		self.img = Image(self.path, self.pos)
+
+	end
+
+	if self.ext and self.img then
+
+		for k, v in pairs(self.ext) do
+
+			self.img[k] = v
+
+		end
+
+	end
 
 end
 

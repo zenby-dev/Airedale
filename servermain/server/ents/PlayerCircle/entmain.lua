@@ -5,15 +5,16 @@
 -- Time: 10:58 AM
 --
 
-class.PlayerCircle(NetBase)
+class.PlayerCircle(NetImage)
 
 function PlayerCircle:__init(ci)
 
-	NetBase.__init(self)
+	NetImage.__init(self, "client/sprites/v.png", Vec2(0, 0))
 
 	self.pos = Vec2(30, 30)
 	self.ci = ci
-	self.col = {math.random(0, 255), math.random(0, 255), math.random(0, 255), 255 }
+	self.ext.scale = Vec2(5, 5)
+	self.ext.ori = Vec2(8, 8)
 
 	self.df = PlayerCircle.df
 
@@ -48,6 +49,8 @@ function PlayerCircle:Update(dt)
 		self.pos = self.pos + Vec2(dt * 100, 0)
 
 	end
+
+	NetImage.Update(self, dt)
 
 end
 

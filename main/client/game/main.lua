@@ -10,6 +10,7 @@
 --TODO: Input struct for CLIENT -> SERVER --DONE--
 --TODO: MOVEY THINGYS SERVER -> CLIENT; draw stuff --DONE--
 --TODO: CLIENT DRAWY STUFF AND ALL THAT --DONE--
+--TODO: FINISH IMAGE THINGY.
 
 function LHC() connect("localhost:413") end
 
@@ -19,6 +20,17 @@ function()
 	for k, v in pairs(ents) do
 
 		v:Draw()
+
+	end
+
+end)
+
+hook.Add("Update", "UpdateEnts",
+function(dt)
+
+	for k, v in pairs(ents) do
+
+		v:Update(dt)
 
 	end
 

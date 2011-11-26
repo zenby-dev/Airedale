@@ -14,7 +14,7 @@ function Image:__init(f, p)
 	self.ori = Vec2(0, 0)
 	self.scale = Vec2(1, 1)
 	self.q = love.graphics.newQuad(0, 0, self.i:getWidth(), self.i:getHeight(), self.i:getWidth(), self.i:getHeight())
-	self.p = p or Vec2(0, 0)
+	self.pos = p or Vec2(0, 0)
 	self.a = 0
 	self.__imgindex = #Images + 1
 	Images[self.__imgindex] = self
@@ -35,7 +35,7 @@ end
 
 function Image:SetPos(p)
 
-	self.p = p
+	self.pos = p
 
 end
 
@@ -59,19 +59,14 @@ end
 
 function Image:AddRotation(a)
 
-	self.a = self.a + a
-	if self.a > math.pi * 2 then
-		self.a = self.a - math.pi * 2
-		self:AddRotation(0)
-	elseif self.a < 0 then
-		self.a = self.a + math.pi * 2
-		self:AddRotation(0)
-	end
+	self.a = (self.a + a) % (math.pi * 2)
 
 end
 
+
+
 function Image:Draw()
-	local p = self.p or Vec2(0, 0)
+	local p = self.pos or Vec2(0, 0)
 	love.graphics.drawq(self.i, self.q, p.x, p.y, self.a, self.scale.x, self.scale.y, self.ori.x, self.ori.y)
 end
 
@@ -91,7 +86,7 @@ function ImageFD:__init(d, p)
 	self.ori = Vec2(0, 0)
 	self.scale = Vec2(1, 1)
 	self.q = love.graphics.newQuad(0, 0, self.i:getWidth(), self.i:getHeight(), self.i:getWidth(), self.i:getHeight())
-	self.p = p
+	self.pos = p
 	self.a = 0
 	self.__imgindex = #Images + 1
 	Images[self.__imgindex] = self
