@@ -76,12 +76,12 @@ function love.run()
 						return
 					end
 				elseif e == "kp" then
-					if love.keypressed then
+					--[[if love.keypressed then
 						-- if exists, call love.draw. on error, remove function
 						if not xpcall(function() love.keypressed(a, b) end, error_handler) then
 							love.keypressed = nil
 						end
-					end
+					end]]
 
 					if console_active then
 						console:keypressed(a,b)

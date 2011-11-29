@@ -4,7 +4,7 @@ console = nil
 input   = nil
 output  = nil
 
-local console_active = true
+local console_active = false
 
 function ConsoleOpen(b)
 
@@ -82,12 +82,12 @@ function love.run()
 						return
 					end
 				elseif e == "kp" then
-					if love.keypressed then
+					--[[if love.keypressed then
 						-- if exists, call love.draw. on error, remove function
 						if not xpcall(function() love.keypressed(a, b) end, error_handler) then
 							love.keypressed = nil
 						end
-					end
+					end]]
 					
 					if a == 'f1' then
 						console_active = not console_active
@@ -166,7 +166,7 @@ function love.load() --LEF loading
 	
 	ents = {} --ents.
 	fontsize = 12 --the basic font size
-	sfont = love.graphics.newFont(fontsize) --basic font
+	sfont = love.graphics.newFont('VeraMono.ttf', fontsize) --basic font
 	
 	include("client/main.lua") --load the game
 	

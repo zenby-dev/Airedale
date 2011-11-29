@@ -13,6 +13,7 @@ function PlayerCircle:__init(ci)
 
 	self.pos = Vec2(30, 30)
 	self.ci = ci
+	CLIENTS[ci].pe = self.__entindex
 	self.ext.scale = Vec2(5, 5)
 	self.ext.ori = Vec2(8, 8)
 

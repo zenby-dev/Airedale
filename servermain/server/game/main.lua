@@ -6,6 +6,14 @@
 --
 --SERVER
 
+hook.Add("Init", "DERPITYDERP",
+function()
+
+	local img = NetImage("client/sprites/airedalemap.png", Vec2(0, 0))
+	img.ext.scale = Vec2(3, 3)
+
+end)
+
 hook.Add("Update", "UpdateEnts",
 function(dt)
 
@@ -13,10 +21,21 @@ function(dt)
 	for k, v in pairs(CLIENTS) do --I'll expand this later
 
 		clientinfo[k] = {}
-		clientinfo[k].name = v.name
+		for key, value in pairs(v) do
+
+			clientinfo[k][key] = value
+
+		end
 
 	end
-	send("updateclientinfo", clientinfo)
+
+	for k, v in pairs(CLIENTS) do
+
+		clientinfo[k].self = true
+		send("updateclientinfo", clientinfo, k)
+		clientinfo[k].self = nil
+
+	end
 
 	--Update Entities
 	for k, v in pairs(ents) do

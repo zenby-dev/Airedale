@@ -11,6 +11,10 @@ function(self)
 	local g = love.graphics
 	self.img:Draw()
 	g.setColor(255, 255, 255, 255)
-	g.print((GetPeer(self.ci).name or "No Name"), self.pos.x - 30, self.pos.y - 45)
+	g.push()
+	local tv = Vec2(self.pos.x - 30, self.pos.y - 55)
+	g.translate(tv.x, tv.y)
+	g.print((GetPeer(self.ci).name or "No Name"), 0, 0)
+	g.pop()
 
 end

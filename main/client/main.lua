@@ -87,6 +87,8 @@ function GameHooks.Draw() --default draw
 		love.graphics.print("Paused!", 5, 5)
 		
 	end
+
+	g.setFont(sfont)
 	
 	--CursorImage:Draw() --Should be last to draw, if you're using it
 

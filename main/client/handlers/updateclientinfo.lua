@@ -9,6 +9,11 @@ newhandler("updateclientinfo",
 function(data)
 
 	PEERS = data --easy!
+	for k, v in pairs(PEERS) do
+
+		if v.self then LOCALPLAYER = k break end
+
+	end
 
 end)
 
@@ -19,5 +24,11 @@ function GetPeer(ci)
 		return PEERS[ci]
 
 	end
+
+end
+
+function LocalPlayer()
+
+	return PEERS[LOCALPLAYER]
 
 end
