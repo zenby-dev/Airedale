@@ -24,9 +24,15 @@ function connect(ipaport)
 
 end
 
-function disconnect()
+function disconnect(res)
 
+	if res then print("Disconnected from server with reason: "..res) end
 	CLIENT:disconnect()
+	for k, v in pairs(ents) do
+
+		v:Remove()
+
+	end
 	CONNECTED = false
 	CONNECTION = nil
 

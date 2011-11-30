@@ -167,6 +167,10 @@ function love.load() --LEF loading
 	ents = {} --ents.
 	fontsize = 12 --the basic font size
 	sfont = love.graphics.newFont('VeraMono.ttf', fontsize) --basic font
+
+	CONFIG = loadtable(love.filesystem.read("config/config.lua")) --EARLY
+
+	love.graphics.setMode((CONFIG.SCRW or 800), (CONFIG.SCRH or 600), (CONFIG.FULLSCR or false))
 	
 	include("client/main.lua") --load the game
 	

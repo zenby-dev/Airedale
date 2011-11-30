@@ -17,8 +17,6 @@ function GameHooks.Init()
 
 	love.graphics.setBackgroundColor(34, 34, 34)
 
-	CONFIG = loadtable(love.filesystem.read("config/config.lua"))
-
 	CLIENT = lube.udpClient()
 	CLIENT.handshake = "AIREDALEHANDSHAKE"
 	function CLIENT.callbacks.recv(data)

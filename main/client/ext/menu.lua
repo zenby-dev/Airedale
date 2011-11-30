@@ -108,7 +108,6 @@ function Menu.Main() -- the main menu for TopWise-ish
 
 	Menu.OnMainMenu = true
 	Menu.Clear()
-	disconnect()
 
 	--[[Menu.Button(Vec2(), "", function()
 
@@ -165,9 +164,9 @@ function Menu.InGame() --the ingame version of the menu
 
 	Menu.Button(Vec2(40, 525), "Main Menu", function()
 
-		disconnect()
-		love.load() --this basically resets the game.
-		--Menu.Main()
+		disconnect("Disconnecting")
+		--include("client/main.lua") --this basically resets the game.
+		Menu.Main()
 
 	end)
 

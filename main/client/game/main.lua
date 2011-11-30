@@ -15,8 +15,6 @@
 
 function LHC() connect("localhost:413") end
 
-love.graphics.setMode(0, 0, true)
-
 Menu.Main() --If you want to use my menu system, go ahead
 Menu.Open = true
 

@@ -8,12 +8,6 @@
 newhandler("disconnect",
 function(data)
 
-	print("Disconnected from server with reason: "..data[1])
-	CLIENT:disconnect()
-	for k, v in pairs(ents) do
-
-		v:Remove()
-
-	end
+	disconnect(data[1])
 
 end)

@@ -7,5 +7,8 @@
 
 return
 {
-	Username = "ZenX2"
+	Username = "ZenX2",
+	FULLSCR = false,
+	SCRW = 800,
+	SCRH = 600
 }
