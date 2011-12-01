@@ -27,7 +27,7 @@ function RemoveClient(ci)
 
 	if CLIENTS[ci] then
 
-		Client:Remove()
+		CLIENTS[ci]:Remove()
 
 	end
 
