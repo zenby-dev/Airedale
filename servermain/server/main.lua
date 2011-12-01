@@ -38,6 +38,7 @@ function GameHooks.Init()
 		end
 
 		AddClient(Client(clientid))
+		send("confirmclientconnection", {}, clientid)
 		hook.Call("ClientConnect", clientid)
 
 	end

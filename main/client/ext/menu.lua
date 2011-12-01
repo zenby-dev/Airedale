@@ -119,9 +119,6 @@ function Menu.Main() -- the main menu for TopWise-ish
 
 	Menu.Button(Vec2(40, 240), "Connect to localhost", function()
 
-		Menu.Clear()
-		Menu.Open = false
-		Menu.OnMainMenu = false
 		LHC()
 
 	end)

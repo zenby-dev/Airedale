@@ -7,20 +7,23 @@
 
 function connect(ipaport)
 
+	print("[NET] Beginning connection to "..ipaport)
 	if CONNECTED then
 
+		print("[NET] Already connected to "..CONNECTION)
 		disconnect()
-		CONNECTED = false
-		CONNECTION = nil
 
 	end
 
 	local ip = ipaport:split(":")
 	if ip[1] == "localhost" then ip[1] = "127.0.0.1" end
-	local s, e = pcall(function() CLIENT:connect(ip[1], ip[2], false) CONNECTED = true CONNECTION = ipaport end)
-	if not s then error(e) end
+	local s, e = pcall(function() print("[NET] Initiating connection to "..ipaport) CLIENT:connect(ip[1], ip[2], false) end)
+	if not s then error(e) print("[NET] Connection failed. See error above") return end
 
-	send("userinfo", {CONFIG.Username})
+	print("[NET] Connection in progress to "..ipaport)
+	PENDINGCONNECTION = ipaport
+
+	--Now to await confirmation
 
 end
 
@@ -35,5 +38,6 @@ function disconnect(res)
 	end
 	CONNECTED = false
 	CONNECTION = nil
+	PENDINGCONNECTION = nil
 
 end
