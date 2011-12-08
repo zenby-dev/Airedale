@@ -107,6 +107,7 @@ end]]
 function Menu.Main() -- the main menu for TopWise-ish
 
 	Menu.OnMainMenu = true
+	Menu.Open = true
 	Menu.Clear()
 
 	--[[Menu.Button(Vec2(), "", function()
@@ -289,13 +290,17 @@ end)
 hook.Add("KeyPressed", "toggleingamemenu",
 function(key)
 
-	if key == "escape" and Menu.OnMainMenu == false then
+	if key == "escape" and Menu.OnMainMenu == false and PENDINGCONNECTION == false then
 
-		Menu.InGame()
 		Menu.Open = not Menu.Open
+		if Menu.Open then Menu.InGame() end
+
+	elseif PENDINGCONNECTION == true then
+
+
 
 	end
 
 end)
 
-hook.Add("Draw", "DrawMenu", Draw)
+hook.Add("DrawGUI", "DrawMenu", Draw)

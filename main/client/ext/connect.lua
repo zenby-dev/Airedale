@@ -23,7 +23,32 @@ function connect(ipaport)
 	print("[NET] Connection in progress to "..ipaport)
 	PENDINGCONNECTION = ipaport
 
+	GUI.AddText("connectingtext", "Connecting to server...", 20, 20)
+
+	Menu.Clear()
+	Menu.Open = false
+	Menu.OnMainMenu = false
+
+	timer.Create("WaitOnConnection", 20, 1, function()
+
+		GUI.Remove("connectingtext")
+		PENDINGCONNECTION = nil
+		print("[NET] Cancelling connection. (Timeout)")
+		Menu.Main()
+		
+	end) --give up after a while
+
 	--Now to await confirmation
+
+end
+
+function cancelconnect()
+
+	timer.Destroy("WaitOnConnection")
+	GUI.Remove("connectingtext")
+	PENDINGCONNECTION = nil
+	print("[NET] Cancelling connection. (Cancel)")
+	Menu.Main()
 
 end
 

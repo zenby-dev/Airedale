@@ -171,6 +171,7 @@ function love.load() --LEF loading
 	CONFIG = loadtable(love.filesystem.read("config/config.lua")) --EARLY
 
 	love.graphics.setMode((CONFIG.SCRW or 800), (CONFIG.SCRH or 600), (CONFIG.FULLSCR or false))
+	love.keyboard.setKeyRepeat(150, 50)
 	
 	include("client/main.lua") --load the game
 	
@@ -194,6 +195,8 @@ end
 function love.draw()
 
 	hook.Call("Draw") --call draw
+
+	hook.Call("DrawGUI")
 
 end
 

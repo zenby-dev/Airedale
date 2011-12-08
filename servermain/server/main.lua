@@ -30,6 +30,8 @@ function GameHooks.Init()
 	end
 	function SERVER.callbacks.connect(clientid)
 
+		print("[NET] Incoming connection from "..clientid)
+
 		if table.size(SERVER.clients) > CONFIG.maxplayers then
 
 			disconnect("Sorry, this server is full.", clientid)
@@ -52,7 +54,7 @@ function GameHooks.Init()
 		hook.Call("ClientDisconnect", clientid)
 
 	end
-	SERVER:setPing(true, 30, "AIREDALEPING") --30 seconds of leniency.
+	SERVER:setPing(true, 20, "AIREDALEPING") --30 seconds of leniency.
 	SERVER:listen(CONFIG.PORT)
 
 	include("server/game/main.lua")

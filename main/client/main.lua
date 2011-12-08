@@ -79,12 +79,7 @@ function GameHooks.Draw() --default draw
 	
 	--hook.Call("DrawGUI") --if you want it to draw at a specified point
 	
-	if pause and not Menu.OnMainMenu then --a kewl pause notificator
-	
-		love.graphics.setFont(Menu.LFont)
-		love.graphics.print("Paused!", 5, 5)
-		
-	end
+	GUI.Draw()
 
 	g.setFont(sfont)
 	

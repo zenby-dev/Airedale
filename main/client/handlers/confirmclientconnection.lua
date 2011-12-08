@@ -8,14 +8,14 @@
 newhandler("confirmclientconnection",
 function(data)
 
+	if PENDINGCONNECTION == nil then print("[NET] Refusing connection confirmation. There is no pending connection.") return end
+
+	GUI.Remove("connectingtext")
+	timer.Destroy("WaitOnConnection")
 	CONNECTED = true
 	CONNECTION = PENDINGCONNECTION
 	PENDINGCONNECTION = nil
 	print("[NET] Connection to "..CONNECTION.." successful")
-
-	Menu.Clear()
-	Menu.Open = false
-	Menu.OnMainMenu = false
 
 	print("[NET] Sending user info")
 

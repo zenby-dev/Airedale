@@ -10,5 +10,9 @@ return
 	Username = "ZenX2",
 	FULLSCR = false,
 	SCRW = 800,
-	SCRH = 600
+	SCRH = 600,
+	KEYBINDS =
+	{
+		CHAT = "y"
+	}
 }
