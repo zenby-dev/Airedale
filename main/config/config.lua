@@ -9,8 +9,8 @@ return
 {
 	Username = "ZenX2",
 	FULLSCR = false,
-	SCRW = 800,
-	SCRH = 600,
+	SCRW = 640,
+	SCRH = 480,
 	KEYBINDS =
 	{
 		CHAT = "y"

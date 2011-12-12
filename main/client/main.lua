@@ -79,9 +79,9 @@ function GameHooks.Draw() --default draw
 	
 	--hook.Call("DrawGUI") --if you want it to draw at a specified point
 	
-	GUI.Draw()
-
 	g.setFont(sfont)
+
+	GUI.Draw()
 	
 	--CursorImage:Draw() --Should be last to draw, if you're using it
 

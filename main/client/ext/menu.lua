@@ -104,7 +104,7 @@ end]]
 
 end]]
 
-function Menu.Main() -- the main menu for TopWise-ish
+function Menu.Main()
 
 	Menu.OnMainMenu = true
 	Menu.Open = true
@@ -118,7 +118,7 @@ function Menu.Main() -- the main menu for TopWise-ish
 
 	--Menu.Image(Vec2(350, 40), "resources/polycode_logo.png")
 
-	Menu.Button(Vec2(40, 240), "Connect to localhost", function()
+	Menu.Button(Vec2(20, 40), "Connect to localhost", function()
 
 		LHC()
 
@@ -130,7 +130,7 @@ function Menu.Main() -- the main menu for TopWise-ish
 
 	end)]]
 
-	Menu.Button(Vec2(40, 525), "Exit", function()
+	Menu.Button(Vec2(20, 200), "Exit", function()
 
 		love.event.push("q")
 
@@ -160,7 +160,7 @@ function Menu.InGame() --the ingame version of the menu
 
 	end)]]
 
-	Menu.Button(Vec2(40, 525), "Main Menu", function()
+	Menu.Button(Vec2(40, 200), "Main Menu", function()
 
 		disconnect("Disconnecting")
 		--include("client/main.lua") --this basically resets the game.
@@ -290,14 +290,14 @@ end)
 hook.Add("KeyPressed", "toggleingamemenu",
 function(key)
 
-	if key == "escape" and Menu.OnMainMenu == false and PENDINGCONNECTION == false then
+	if key == "escape" and Menu.OnMainMenu == false and PENDINGCONNECTION == nil and not BLOCKMENU then
 
 		Menu.Open = not Menu.Open
 		if Menu.Open then Menu.InGame() end
 
-	elseif PENDINGCONNECTION == true then
+	elseif key == "escape" and PENDINGCONNECTION ~= nil then
 
-
+		cancelconnect()
 
 	end
 

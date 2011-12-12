@@ -161,6 +161,10 @@ function love.load() --LEF loading
 
 	end
 
+	goo = include("goo/goo.lua")
+	goo:load()
+	--goo:setSkin("dark")
+
 	requiredir("/ext") --load them extensions
 	require("mods/loader.lua") --load mods
 	
@@ -170,7 +174,18 @@ function love.load() --LEF loading
 
 	CONFIG = loadtable(love.filesystem.read("config/config.lua")) --EARLY
 
-	love.graphics.setMode((CONFIG.SCRW or 800), (CONFIG.SCRH or 600), (CONFIG.FULLSCR or false))
+	if CONFIG.FULLSCR then
+
+		love.graphics.setMode(0, 0, true)
+
+	else
+
+		love.graphics.setMode((CONFIG.SCRW or 320), (CONFIG.SCRH or 240), false)
+
+	end
+
+	--love.mouse.setVisible(false)
+
 	love.keyboard.setKeyRepeat(150, 50)
 	
 	include("client/main.lua") --load the game
@@ -179,6 +194,8 @@ function love.load() --LEF loading
 end
 
 function love.update(dt) --update wrapper
+
+	goo:update(dt)
 
 	ParticleSys.Update() --update particle system wrapper
 	
@@ -194,21 +211,35 @@ end
 
 function love.draw()
 
+	local g = love.graphics
+
+	g.push()
+
 	hook.Call("Draw") --call draw
 
 	hook.Call("DrawGUI")
+
+	g.setFont(Menu.LFont)
+
+	--g.print("\\", love.mouse.getX(), love.mouse.getY())
+
+	g.pop()
+
+	goo:draw()
 
 end
 
 function love.mousepressed(x, y, b) --and more wrappers. whee
 
 	hook.Call("MousePressed", x, y, b)
+	goo:mousepressed(x, y, b)
 
 end
 
 function love.mousereleased(x, y, b)
 
 	hook.Call("MouseReleased", x, y, b)
+	goo:mousereleased(x, y, b)
 
 end
 
@@ -218,14 +249,16 @@ function love.focus(f)
 
 end
 
-function love.keypressed(key)
+function love.keypressed(key, uni)
 
 	hook.Call("KeyPressed", key)
+	goo:keypressed(key, uni)
 
 end
 
-function love.keyreleased(key)
+function love.keyreleased(key, uni)
 
 	hook.Call("KeyReleased", key)
+	goo:keyreleased(key, uni)
 
 end

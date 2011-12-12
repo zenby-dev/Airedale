@@ -33,6 +33,8 @@ function()
 
 	end
 
+	g.setColor(255, 255, 255, 255)
+
 	g.push()
 
 	g.translate(-offset.x + g.getWidth() / 2, -offset.y + g.getHeight() / 2)
@@ -57,3 +59,11 @@ function(dt)
 	end
 
 end)
+
+function TestPanel()
+
+	local tp = goo.panel:new()
+	tp:setPos(10, 10)
+	tp:setSize(200, 200)
+
+end
