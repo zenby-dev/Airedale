@@ -31,10 +31,20 @@ function connect(ipaport)
 
 	timer.Create("WaitOnConnection", 20, 1, function()
 
+		GUI.AddText("connectionfail", "Connection Failed", (love.graphics.getWidth() / 2) - (sfont:getWidth("Connection Failed") / 2), love.graphics.getHeight() / 2)
 		GUI.Remove("connectingtext")
-		PENDINGCONNECTION = nil
-		print("[NET] Cancelling connection. (Timeout)")
-		Menu.Main()
+
+		local okbutton = goo.button:new()
+		okbutton:setPos((love.graphics.getWidth() / 2) - 20, (love.graphics.getHeight() / 2) + 20)
+		okbutton:setText("Ok")
+		okbutton:sizeToText()
+		okbutton.onClick = function()
+			GUI.Remove("connectionfail")
+			okbutton:removeFromParent()
+			PENDINGCONNECTION = nil
+			print("[NET] Cancelling connection. (Timeout)")
+			GoToMainMenu()
+		end 
 		
 	end) --give up after a while
 
@@ -48,7 +58,7 @@ function cancelconnect()
 	GUI.Remove("connectingtext")
 	PENDINGCONNECTION = nil
 	print("[NET] Cancelling connection. (Cancel)")
-	Menu.Main()
+	GoToMainMenu()
 
 end
 

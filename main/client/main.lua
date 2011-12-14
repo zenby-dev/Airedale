@@ -15,7 +15,9 @@ function GameHooks.Init()
 
 	CameraPos = Vec2(0, 0) --the position of the camera (IMPORTANT!!!!)
 
-	love.graphics.setBackgroundColor(34, 34, 34)
+	love.graphics.setBackgroundColor(24, 24, 72)
+
+	MMB = MainMenuBackground()
 
 	CLIENT = lube.udpClient()
 	CLIENT.handshake = "AIREDALEHANDSHAKE"
@@ -57,6 +59,12 @@ function GameHooks.Update(dt) --default update
 	CLIENT:update(dt)
 	CLIENT:send("ping")
 
+	if MMB then
+
+		MMB:Update(dt)
+
+	end
+
 	if pause then return end --necissary for pausing
 	
 	--Update stuff
@@ -66,6 +74,12 @@ end
 function GameHooks.Draw() --default draw
 
 	local g = love.graphics --wheee
+
+	if MMB then
+
+		MMB:Draw()
+
+	end
 
 	g.push()
 	

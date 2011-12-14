@@ -334,10 +334,10 @@ function goo:draw( x, y, object )
 	love.graphics.push()
 	love.graphics.translate( x, y )
 	love.graphics.scale( object.xscale, object.yscale )
-		object:draw()
+		object:draw(x, y)
 	
 	for i,child in ipairs(object.children) do
-		if child.visible then self:draw(child.x,child.y,child) end
+		if child.visible then self:draw((child.x or 0), (child.y or 0), child) end
 	end
 	
 	love.graphics.pop()

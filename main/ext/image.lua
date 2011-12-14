@@ -63,7 +63,17 @@ function Image:AddRotation(a)
 
 end
 
+function Image:GetSize()
 
+	return Vec2(self.i:getWidth() * self.scale.x, self.i:getHeight() * self.scale.y)
+
+end
+
+function Image:GetPos()
+
+	return self.pos
+
+end
 
 function Image:Draw()
 	local p = self.pos or Vec2(0, 0)

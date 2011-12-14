@@ -9,16 +9,21 @@ Menu = {} --ZenX2's menu class. again, dangerous.
 
 Menu.Buttons = {} --Buttons
 Menu.Images = {} --Images
-Menu.LastOption = nil
 
-Menu.LFont = love.graphics.newFont('VeraMono.ttf', 18)
+--Menu.LFont = love.graphics.newFont('VeraMono.ttf', 18)
 
 Menu.Open = false --Is a menu open?
 Menu.OnMainMenu = false --is it the main menu?
 
 function Menu.Button(p, t, f) --create a button
 
-	table.insert(Menu.Buttons, {p, t, f})
+	local button = goo.button:new()
+	button:setPos(p.x, p.y)
+	button:setText(t)
+	button:sizeToText()
+	button.onClick = f
+
+	table.insert(Menu.Buttons, button)
 
 end
 
@@ -29,25 +34,47 @@ function Menu.Image(p, pa)
 
 end
 
+function Menu.ButtonVisibility(b)
+
+	for k, v in pairs((Menu.Buttons or {})) do
+
+		v:setVisible(b)
+
+	end
+
+end
+
 function Menu.Clear() --no moar buttons
 
+	for k, v in pairs(Menu.Buttons) do
+
+		v:removeFromParent()
+
+	end
 	Menu.Buttons = {}
 	for k, v in pairs(Menu.Images) do
 
 		v:Remove()
 
 	end
-	Menu.Buttons = {}
 	Menu.Images = {}
+
+end
+
+function GoToMainMenu()
+
+	disconnect("Disconnecting")
+	hook.Call("Init")
 
 end
 
 local function Draw()
 
-	if not Menu.Open then return end
+	if not Menu.Open then Menu.ButtonVisibility(false) return end
+	Menu.ButtonVisibility(true)
 
-	love.graphics.setFont(Menu.LFont)
-	for k, v in pairs(Menu.Buttons) do
+	--love.graphics.setFont(Menu.LFont)
+	--[[for k, v in pairs(Menu.Buttons) do
 
 		local x, y = love.mouse.getPosition()
 
@@ -63,7 +90,7 @@ local function Draw()
 
 		love.graphics.print(v[2], v[1].x, v[1].y)
 
-	end
+	end]]
 
 	love.graphics.setColor(255, 255, 255, 255)
 
@@ -120,6 +147,7 @@ function Menu.Main()
 
 	Menu.Button(Vec2(20, 40), "Connect to localhost", function()
 
+		MMB:Remove()
 		LHC()
 
 	end)
@@ -162,9 +190,7 @@ function Menu.InGame() --the ingame version of the menu
 
 	Menu.Button(Vec2(40, 200), "Main Menu", function()
 
-		disconnect("Disconnecting")
-		--include("client/main.lua") --this basically resets the game.
-		Menu.Main()
+		GoToMainMenu()
 
 	end)
 
@@ -270,30 +296,17 @@ end
 
 end]]
 
-hook.Add("MouseReleased", "DoMenu", function(x, y, b)
-
-	if not Menu.Open then return end
-
-	local mp = Vec2(x, y)
-
-	for k, v in pairs(Menu.Buttons) do
-
-		if x >= v[1].x and x <= v[1].x + 300 and y >= v[1].y and y <= v[1].y + 18 and b == "l" then
-
-			v[3]()
-
-		end
-	end
-
-end)
-
 hook.Add("KeyPressed", "toggleingamemenu",
 function(key)
 
 	if key == "escape" and Menu.OnMainMenu == false and PENDINGCONNECTION == nil and not BLOCKMENU then
 
 		Menu.Open = not Menu.Open
-		if Menu.Open then Menu.InGame() end
+		if Menu.Open then
+			Menu.InGame()
+		else
+			Menu.Clear()
+		end
 
 	elseif key == "escape" and PENDINGCONNECTION ~= nil then
 

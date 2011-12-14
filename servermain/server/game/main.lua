@@ -10,7 +10,7 @@ hook.Add("Init", "DERPITYDERP",
 function()
 
 	local img = NetImage("client/sprites/airedalemap.png", Vec2(0, 0))
-	img.ext.scale = Vec2(3, 3)
+	img.ext.scale = Vec2(7, 7)
 
 end)
 

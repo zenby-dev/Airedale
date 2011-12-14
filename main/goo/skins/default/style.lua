@@ -13,9 +13,9 @@
 local style = {}
 local fonts = {}
 fonts.default24 = love.graphics.newFont(24)
-fonts.oldsans12 = love.graphics.newFont(GOO_SKINPATH .. 'oldsansblack.ttf', 12)
-fonts.oldsans24 = love.graphics.newFont(GOO_SKINPATH .. 'oldsansblack.ttf', 24)
-fonts.oldsans32 = love.graphics.newFont(GOO_SKINPATH .. 'oldsansblack.ttf', 32)
+fonts.oldsans12 = love.graphics.newFont('VeraMono.ttf', 12)
+fonts.oldsans24 = love.graphics.newFont('VeraMono.ttf', 24)
+fonts.oldsans32 = love.graphics.newFont('VeraMono.ttf', 32)
 
 style['goo panel'] = {
 	backgroundColor = {255,255,255},

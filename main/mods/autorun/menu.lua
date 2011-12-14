@@ -1,4 +1,4 @@
-Menu = {} --ZenX2's menu class. again, dangeous.
+--[=[Menu = {} --ZenX2's menu class. again, dangeous.
 
 Menu.Buttons = {} --Buttons
 
@@ -233,4 +233,4 @@ hook.Add("MouseReleased", "DoMenu", function(x, y, b)
 
 end)
 
-hook.Add("Draw", "DrawMenu", Draw)
+hook.Add("Draw", "DrawMenu", Draw)]=]

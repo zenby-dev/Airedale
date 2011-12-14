@@ -163,7 +163,7 @@ function love.load() --LEF loading
 
 	goo = include("goo/goo.lua")
 	goo:load()
-	--goo:setSkin("dark")
+	goo:setSkin("mainmenu")
 
 	requiredir("/ext") --load them extensions
 	require("mods/loader.lua") --load mods
@@ -189,7 +189,7 @@ function love.load() --LEF loading
 	love.keyboard.setKeyRepeat(150, 50)
 	
 	include("client/main.lua") --load the game
-	
+
 	hook.Call("Init") --call init
 end
 
@@ -232,14 +232,16 @@ end
 function love.mousepressed(x, y, b) --and more wrappers. whee
 
 	hook.Call("MousePressed", x, y, b)
-	goo:mousepressed(x, y, b)
+	local s, e = pcall(function() goo:mousepressed(x, y, b) end)
+	if not s then print("Error: "..e) end
 
 end
 
 function love.mousereleased(x, y, b)
 
 	hook.Call("MouseReleased", x, y, b)
-	goo:mousereleased(x, y, b)
+	local s, e = pcall(function() goo:mousereleased(x, y, b) end)
+	if not s then love.filesystem.write("ERRORRRRR NOES.txt", e) end
 
 end
 
@@ -252,13 +254,15 @@ end
 function love.keypressed(key, uni)
 
 	hook.Call("KeyPressed", key)
-	goo:keypressed(key, uni)
+	local s, e = pcall(function() goo:keypressed(key, uni) end)
+	if not s then print("Error: "..e) end
 
 end
 
 function love.keyreleased(key, uni)
 
 	hook.Call("KeyReleased", key)
-	goo:keyreleased(key, uni)
+	local s, e = pcall(function() goo:keyreleased(key, uni) end)
+	if not s then print("Error: "..e) end
 
 end

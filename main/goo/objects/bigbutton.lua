@@ -7,6 +7,7 @@ goo.bigbutton.image.left = love.graphics.newImage(goo.skin..'bigbutton_right.png
 function goo.bigbutton:initialize(parent)
 	super.initialize(self,parent)
 	self.checkState = 'unchecked'
+	self.text = "bigbutton"
 	self:exitHover()
 end
 function goo.bigbutton:enterHover()
@@ -19,7 +20,8 @@ function goo.bigbutton:exitHover()
 end
 function goo.bigbutton:draw(x,y)
 	local w = self.image.left:getWidth() - 5
-	
+	local x, y = x or 0, y or 0
+
 	love.graphics.setColor( unpack(self.buttonColor) )
 	love.graphics.draw( self.image.right, x, y )
 	love.graphics.draw( self.image.middle, x+w, y, 0, self.w, 1)
