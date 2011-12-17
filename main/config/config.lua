@@ -14,5 +14,6 @@ return
 	KEYBINDS =
 	{
 		CHAT = "y"
-	}
+	},
+	MainMenuSpeed = 1
 }

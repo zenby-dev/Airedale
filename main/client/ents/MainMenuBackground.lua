@@ -22,7 +22,8 @@ end
 function MainMenuBackground:Update(dt)
 
 	local bx, by = self.startpos.x + self.img:GetSize().x / 1.1, self.img:GetSize().y / 6
-	self.pos = Vec2(bx + (math.sin(os.clock() / 8) * (self.img:GetSize().x / 3.5)) - (math.cos(os.clock() / 10) * (self.img:GetSize().x / 10)), by + math.sin(os.clock() / 6) * (self.img:GetSize().y / 6))
+	local speed = CONFIG.MainMenuSpeed or 1
+	self.pos = Vec2(bx + (math.sin(os.clock() / (8 / speed)) * (self.img:GetSize().x / 3.5)) - (math.cos(os.clock() / (10 / speed)) * (self.img:GetSize().x / 10)) + self.img:GetSize().x / 5, by + (math.sin(os.clock() / (6 / speed)) * (self.img:GetSize().y / 6)) + self.img:GetSize().y / 6)
 	--self.img:SetPos(Vec2(self.startpos.x + (math.sin(os.clock() / 2) * (self.img:GetSize().x / 10)), self.startpos.y + math.cos(os.clock() / 4) * 300))
 
 end
