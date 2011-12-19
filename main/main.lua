@@ -163,7 +163,7 @@ function love.load() --LEF loading
 
 	goo = include("goo/goo.lua")
 	goo:load()
-	goo:setSkin("mainmenu")
+	goo:setSkin("airedale")
 
 	requiredir("/ext") --load them extensions
 	require("mods/loader.lua") --load mods

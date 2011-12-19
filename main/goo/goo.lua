@@ -341,6 +341,7 @@ function goo:draw( x, y, object )
 	end
 	
 	love.graphics.pop()
+	love.graphics.setColor(255, 255, 255, 255)
 end
 
 function goo:debugdraw()

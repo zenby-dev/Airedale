@@ -4,22 +4,10 @@ CameraFocuses = {}
 function SetState(s)
 
 	CurrentState = s
-	if not screens[s] then
-	
-		screens[s] = PhysicsScreen(10, 60)
-		
-	end
+
+	ents = Ents[s] or {}
 	
 	if Levels[s] then Level = Levels[s] InitLevel(s) end
-	
-	if screen then
-	
-		screen.enabled = false --old screen disabled
-	
-	end
-	
-	screen = screens[s]
-	screen.enabled = true
 
 end
 

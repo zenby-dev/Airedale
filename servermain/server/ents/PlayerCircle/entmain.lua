@@ -26,6 +26,7 @@ PlayerCircle.df = love.filesystem.read("server/ents/PlayerCircle/draw.lua")
 function PlayerCircle:Update(dt)
 
 	local c = GetClient(self.ci)
+	if not c then return end
 
 	if c:KeyIsDown("w") then
 

@@ -19,7 +19,7 @@ function goo.button:draw()
 	if self.border then
 		love.graphics.setLine( 1, 'rough' )
 		self:setColor( self.borderColor )
-		love.graphics.rectangle( 'line', 0, 0, self.w+2, self.h )
+		love.graphics.rectangle( 'line', 0, 0, self.w, self.h )
 	end
 	
 	self:setColor( self.textColor )
